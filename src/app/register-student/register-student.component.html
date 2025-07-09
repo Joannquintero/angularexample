@@ -1,51 +1,79 @@
 <style>
-    .margin-input{
-        margin: 5px;
-        width: 30%;
-    }
+  .margin-input {
+    margin: 5px;
+    width: 30%;
+  }
 </style>
 
-<div style="text-align:center;">
-<h2>Crea tu cuenta</h2>
-<form (submit)="saveChanges()" [formGroup]="form">
+<div style="text-align: center">
+  <h2>Crea tu cuenta</h2>
+  <form (submit)="saveChanges()" [formGroup]="form">
     <mat-form-field appearance="outline" class="margin-input">
-        <mat-label>Nombre</mat-label>
-        <input matInput placeholder="Nombre" [formControl]="form.controls.Name">
+      <mat-label>Nombre</mat-label>
+      <input matInput placeholder="Nombre" [formControl]="form.controls.Name" />
     </mat-form-field>
-    <br>
+    <br />
     <mat-form-field appearance="outline" class="margin-input">
-        <mat-label>Segundo Nombre</mat-label>
-        <input matInput placeholder="Nombre" [formControl]="form.controls.SecondName">
+      <mat-label>Segundo Nombre</mat-label>
+      <input
+        matInput
+        placeholder="Nombre"
+        [formControl]="form.controls.SecondName"
+      />
     </mat-form-field>
-    <br>
+    <br />
     <mat-form-field appearance="outline" class="margin-input">
-        <mat-label>Apellido</mat-label>
-        <input matInput placeholder="Nombre" [formControl]="form.controls.LastName">
+      <mat-label>Apellido</mat-label>
+      <input
+        matInput
+        placeholder="Nombre"
+        [formControl]="form.controls.LastName"
+      />
     </mat-form-field>
-    <br>
-      <mat-form-field appearance="outline" class="margin-input">
-        <mat-label>Segundo Apellido</mat-label>
-        <input matInput placeholder="Nombre" [formControl]="form.controls.SecondLastName">
-    </mat-form-field>
-    <br>
+    <br />
     <mat-form-field appearance="outline" class="margin-input">
-        <mat-label>Correo electronico</mat-label>
-        <input matInput placeholder="Correo electronico" [formControl]="form.controls.Email">
+      <mat-label>Segundo Apellido</mat-label>
+      <input
+        matInput
+        placeholder="Nombre"
+        [formControl]="form.controls.SecondLastName"
+      />
     </mat-form-field>
-    <br>
+    <br />
     <mat-form-field appearance="outline" class="margin-input">
-        <mat-label>Contrasena</mat-label>
-        <input matInput placeholder="Contrasena" [formControl]="form.controls.Password" type="Password">
+      <mat-label>Correo electronico</mat-label>
+      <input
+        matInput
+        placeholder="Correo electronico"
+        [formControl]="form.controls.Email"
+      />
     </mat-form-field>
-    <br>
-       <mat-form-field appearance="outline" class="margin-input">
-        <mat-label>Confirmar Contrasena</mat-label>
-        <input matInput placeholder="Confirmar Contrasena" [formControl]="form.controls.ConfirmPassword" type="Password">
+    <br />
+    <mat-form-field appearance="outline" class="margin-input">
+      <mat-label>Contrasena</mat-label>
+      <input
+        matInput
+        placeholder="Contrasena"
+        [formControl]="form.controls.Password"
+        type="Password"
+      />
     </mat-form-field>
-    <br>
+    <br />
+    <mat-form-field appearance="outline" class="margin-input">
+      <mat-label>Confirmar Contrasena</mat-label>
+      <input
+        matInput
+        placeholder="Confirmar Contrasena"
+        [formControl]="form.controls.ConfirmPassword"
+        type="Password"
+      />
+    </mat-form-field>
+    <br />
     <div>
-        <a mat-stroked-button href="" style="margin: 5px;">Cancelar</a>
-        <button type="submit" routerLink="/students" mat-flat-button>Registrar</button>
+      <a mat-stroked-button href="" style="margin: 5px">Cancelar</a>
+      <button type="submit" routerLink="/students" mat-flat-button>
+        Registrar
+      </button>
     </div>
-</form>
+  </form>
 </div>

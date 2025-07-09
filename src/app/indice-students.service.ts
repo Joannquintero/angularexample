@@ -3,15 +3,14 @@ import { inject, Injectable } from '@angular/core';
 import { environment } from '../environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class IndiceStudentsService {
+  constructor() {}
+  private http = inject(HttpClient);
+  private URLbase = environment.apiURL + '/api/v1/Students/GetAsync?Id=1';
 
-   constructor() { }
-    private http = inject(HttpClient);
-    private URLbase = environment.apiURL + '/api/v1/Students/GetAsync?Id=1';
-  
-      public getCourses() {
-      return this.http.get<any>(this.URLbase);
-    }
+  public getCourses() {
+    return this.http.get<any>(this.URLbase);
+  }
 }
