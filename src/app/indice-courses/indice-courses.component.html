@@ -1,25 +1,23 @@
-
 <h2>Mis cursos</h2>
 
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef> Titulo </th>
-      <td mat-cell *matCellDef="let element"><strong>{{element.name}}</strong></td>
-    </ng-container>
-  
-    <ng-container matColumnDef="description">
-      <th mat-header-cell *matHeaderCellDef> Descripción </th>
-      <td mat-cell *matCellDef="let element"> {{element.description}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="action">
-      <th mat-header-cell *matHeaderCellDef> </th>
-      
-      <td mat-cell *matCellDef="let element"> 
-        
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Titulo</th>
+    <td mat-cell *matCellDef="let element">
+      <strong>{{ element.course.name }}</strong>
     </td>
-    </ng-container>
-    
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
+  </ng-container>
+
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef></th>
+
+    <td mat-cell *matCellDef="let element">
+      <a mat-flat-button [routerLink]="['/studentsCourses', element.id]"
+        >Ver Compañeros</a
+      >
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>

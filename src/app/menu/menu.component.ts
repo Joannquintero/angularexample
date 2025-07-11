@@ -31,12 +31,12 @@ export class MenuComponent implements OnInit {
   ngOnInit(): void {
     const userSession = sessionStorage.getItem('userSession');
     if (userSession) {
-      const objUsuario: UserObject = JSON.parse(userSession);
-      this.fullName = objUsuario.fullName;
+      const objUser: UserObject = JSON.parse(userSession);
+      this.fullName = objUser.fullName;
       this.isAuthenticated = true;
 
       this.creditProgramService
-        .getCreditStudent(objUsuario.studentId)
+        .getCreditStudent(objUser.studentId)
         .subscribe((response) => {
           if (response != null) {
             this.credits = response.credits;

@@ -8,10 +8,13 @@ import { environment } from '../environments/environment';
 export class IndiceStudentsCoursesService {
   constructor() {}
   private http = inject(HttpClient);
-  private URLbase =
-    environment.apiURL + '/api/v1/Students/StudentsCourseAsync?Id=1&Filter=1';
+  private URLbase = environment.apiURL + '/api/v1/Students/StudentsCourseAsync';
 
-  public getCourses() {
-    return this.http.get<any>(this.URLbase);
+  public getStudentsCourses(studentId: number, courseId: number) {
+    let url = this.URLbase + '?Filter=' + studentId;
+    if (courseId > 0) {
+      url = url + '&id=' + courseId;
+    }
+    return this.http.get<any>(url);
   }
 }
