@@ -8,9 +8,9 @@ import { environment } from '../environments/environment';
 export class IndiceStudentsService {
   constructor() {}
   private http = inject(HttpClient);
-  private URLbase = environment.apiURL + '/api/v1/Students/GetAsync?Id=1';
+  private URLbase = environment.apiURL + '/api/v1/Students/GetAsync?Id=';
 
-  public getCourses() {
-    return this.http.get<any>(this.URLbase);
+  public getCourses(id: number) {
+    return this.http.get<any>(this.URLbase + id);
   }
 }

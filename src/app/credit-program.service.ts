@@ -10,6 +10,12 @@ export class CreditProgramService {
   constructor() {}
   private http = inject(HttpClient);
   private URLbase = environment.apiURL + '/api/v1/Credits/InsertAsync';
+  private getUrlbase =
+    environment.apiURL + '/api/v1/Credits/GetStudentCreditsAsync?Id=';
+
+  public getCreditStudent(id: number) {
+    return this.http.get<any>(this.getUrlbase + id);
+  }
 
   public insert(credit: creditUser) {
     return this.http.post(this.URLbase, credit);

@@ -5,11 +5,19 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { Router, RouterLink } from '@angular/router';
 import { UserObject } from '../student.models';
+import { MatCardModule } from '@angular/material/card';
+import { CreditProgramService } from '../credit-program.service';
 
 @Component({
   selector: 'app-menu',
   standalone: true,
-  imports: [MatToolbarModule, MatButtonModule, MatIconModule, RouterLink],
+  imports: [
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    RouterLink,
+    MatCardModule,
+  ],
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.css',
 })
@@ -17,6 +25,8 @@ export class MenuComponent implements OnInit {
   fullName?: string;
   isAuthenticated: boolean = false;
   router = inject(Router);
+  creditProgramService = inject(CreditProgramService);
+  credits: number = 0;
 
   ngOnInit(): void {
     const userSession = sessionStorage.getItem('userSession');
@@ -24,6 +34,16 @@ export class MenuComponent implements OnInit {
       const objUsuario: UserObject = JSON.parse(userSession);
       this.fullName = objUsuario.fullName;
       this.isAuthenticated = true;
+
+      this.creditProgramService
+        .getCreditStudent(objUsuario.studentId)
+        .subscribe((response) => {
+          if (response != null) {
+            this.credits = response.credits;
+          } else {
+            this.credits = 0;
+          }
+        });
     }
   }
 

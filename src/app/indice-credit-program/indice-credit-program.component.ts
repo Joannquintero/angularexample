@@ -36,7 +36,6 @@ export class IndiceCreditProgramComponent {
   }
 
   requestProgramCredit(credit: number) {
-    debugger;
     const userSession = sessionStorage.getItem('userSession');
     if (userSession) {
       const userObject: UserObject = JSON.parse(userSession);
