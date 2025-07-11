@@ -13,6 +13,10 @@ import {
 import { StudentService } from '../student.service';
 import { Router } from '@angular/router';
 import { GlobalServiceService } from '../global-service.service';
+import { environment } from '../../environments/environment';
+import { ActivatedRoute } from '@angular/router';
+import { CoursesService } from '../courses.service';
+import { EnrollStudent } from '../course.model';
 
 @Component({
   selector: 'app-register-student',
@@ -31,6 +35,9 @@ export class RegisterStudentComponent {
   studentService = inject(StudentService);
   globalServiceService = inject(GlobalServiceService);
   userResponse: any = null;
+  urlBase = environment.urlLocal;
+  id: number = 0;
+  coursesServices = inject(CoursesService);
 
   router = inject(Router);
 
@@ -44,6 +51,13 @@ export class RegisterStudentComponent {
     ConfirmPassword: [''],
   });
 
+  constructor(private route: ActivatedRoute) {}
+
+  ngOnInit(): void {
+    let value = this.route.snapshot.paramMap.get('id') || 0;
+    this.id = Number(value);
+  }
+
   saveChanges() {
     let user = this.form.value as UserCreate;
     this.studentService.createUser(user).subscribe((response) => {
@@ -51,11 +65,12 @@ export class RegisterStudentComponent {
 
       let student = this.form.value as StudentCreate;
       student.UserId = userToken.id;
+
       this.studentService.create(student).subscribe((response) => {
         this.userResponse = response;
         var StudentCredit: StudentCredit = {
           StudentId: userToken.id,
-          Credits: 0,
+          Credits: 3,
         };
 
         this.globalServiceService.idStudent = StudentCredit.StudentId;
@@ -68,8 +83,15 @@ export class RegisterStudentComponent {
             token: userToken.token,
           };
 
-          sessionStorage.setItem('userSession', JSON.stringify(userObject));
-          this.router.navigate(['courses']);
+          var enroll: EnrollStudent = {
+            courseId: this.id,
+            studentId: userObject.studentId,
+          };
+
+          this.coursesServices.requestCourse(enroll).subscribe(() => {
+            sessionStorage.setItem('userSession', JSON.stringify(userObject));
+            window.location.href = this.urlBase;
+          });
         });
       });
     });

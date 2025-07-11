@@ -26,8 +26,8 @@
     }
   </span>
   <span class="example-fill-remaining-space"></span>
-  <span style="font-size: 60%">{{ fullName }} </span>
-  @if (fullName) {
+  <span style="font-size: 62%">{{ email }} </span>
+  @if (email) {
   <span style="padding-right: 5%">
     <a mat-button (click)="exitSession()">
       <mat-icon>exit_to_app</mat-icon> Salir
@@ -37,9 +37,17 @@
 </mat-toolbar>
 @if (isAuthenticated) {
 <div class="contenedor space">
+  @if (credits == 0) {
+  <mat-card style="padding: 10px"
+    ><strong>Mis Créditos: {{ credits }}</strong>
+    <strong style="color: red"
+      >Para solicitar un curso debe seleccionar un programa de créditos.</strong
+    > </mat-card
+  >} @else {
   <mat-card style="padding: 10px"
     ><strong>Mis Créditos: {{ credits }}</strong></mat-card
   >
+  }
 </div>
 
 }

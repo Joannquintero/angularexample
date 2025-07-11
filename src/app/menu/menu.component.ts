@@ -7,6 +7,7 @@ import { Router, RouterLink } from '@angular/router';
 import { UserObject } from '../student.models';
 import { MatCardModule } from '@angular/material/card';
 import { CreditProgramService } from '../credit-program.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-menu',
@@ -22,17 +23,18 @@ import { CreditProgramService } from '../credit-program.service';
   styleUrl: './menu.component.css',
 })
 export class MenuComponent implements OnInit {
-  fullName?: string;
+  email?: string;
   isAuthenticated: boolean = false;
   router = inject(Router);
   creditProgramService = inject(CreditProgramService);
   credits: number = 0;
+  urlBase = environment.urlLocal;
 
   ngOnInit(): void {
     const userSession = sessionStorage.getItem('userSession');
     if (userSession) {
       const objUser: UserObject = JSON.parse(userSession);
-      this.fullName = objUser.fullName;
+      this.email = objUser.email;
       this.isAuthenticated = true;
 
       this.creditProgramService
@@ -49,8 +51,8 @@ export class MenuComponent implements OnInit {
 
   exitSession() {
     sessionStorage.clear();
-    this.fullName = '';
+    this.email = '';
     this.isAuthenticated = false;
-    this.router.navigate(['']);
+    window.location.href = this.urlBase;
   }
 }

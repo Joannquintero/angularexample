@@ -6,6 +6,7 @@ import { UserObject } from '../student.models';
 import { creditUser } from '../credit.model';
 import { CreditProgramService } from '../credit-program.service';
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-indice-credit-program',
@@ -15,6 +16,7 @@ import { Router } from '@angular/router';
   styleUrl: './indice-credit-program.component.css',
 })
 export class IndiceCreditProgramComponent {
+  urlBase = environment.urlLocal;
   displayedColumns: string[] = ['name', 'credit', 'price', 'action'];
   dataSource: any[] = [];
   formatMoney = new Intl.NumberFormat('es-CO', {
@@ -45,6 +47,7 @@ export class IndiceCreditProgramComponent {
       };
       this.creditAddProgramService.insert(creditObject).subscribe(() => {
         this.router.navigate(['']);
+        window.location.href = this.urlBase;
       });
     }
   }

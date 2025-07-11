@@ -11,7 +11,7 @@ export const routes: Routes = [
   { path: 'courses', component: IndiceCoursesComponent },
   { path: 'students', component: IndiceStudentsComponent },
   { path: 'credits', component: IndiceCreditProgramComponent },
-  { path: 'students/register', component: RegisterStudentComponent },
+  { path: 'students/register/:id', component: RegisterStudentComponent },
   { path: 'landing', component: LandingComponent },
   { path: 'studentsCourses/:id', component: IndiceStudentsCoursesComponent },
 ];
