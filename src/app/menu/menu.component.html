@@ -1,17 +1,30 @@
-
+<style>
+  .example-fill-remaining-space {
+    flex: 1 1 auto;
+  }
+</style>
 <mat-toolbar>
-    <span>
-        <a routerLink="" mat-button>
-            <mat-icon>menu</mat-icon> Inicio
-        </a>
-        <a routerLink="students" mat-button>
-            <mat-icon>face</mat-icon> Estudiantes
-        </a>
-        <a routerLink="credits" mat-button>
-            <mat-icon>list_alt</mat-icon> Programa de Créditos
-        </a>
-        <a routerLink="courses" mat-button>
-            <mat-icon>laptop windows</mat-icon> Mis Cursos
-        </a>  
-    </span>
+  <span>
+    <a routerLink="" mat-button> <mat-icon>menu</mat-icon> Inicio </a>
+    @if (isAuthenticated) {
+    <a routerLink="students" mat-button>
+      <mat-icon>face</mat-icon> Estudiantes
+    </a>
+    <a routerLink="credits" mat-button>
+      <mat-icon>list_alt</mat-icon> Programa de Créditos
+    </a>
+    <a routerLink="courses" mat-button>
+      <mat-icon>laptop windows</mat-icon> Mis Cursos
+    </a>
+    }
+  </span>
+  <span class="example-fill-remaining-space"></span>
+  <span style="font-size: 60%">{{ fullName }} </span>
+  @if (fullName) {
+  <span style="padding-right: 5%">
+    <a mat-button (click)="exitSession()">
+      <mat-icon>exit_to_app</mat-icon> Salir
+    </a>
+  </span>
+  }
 </mat-toolbar>

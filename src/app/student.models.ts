@@ -23,3 +23,17 @@ export interface UserCreate {
   Password: string;
   ConfirmPassword: string;
 }
+
+export interface UserToken {
+  id: number;
+  expiration: string;
+  token: string;
+}
+
+export interface UserObject {
+  id: number;
+  studentId: number;
+  fullName: string;
+  email: string;
+  token: string;
+}

@@ -6,9 +6,10 @@ import { IndiceCreditProgramComponent } from './indice-credit-program/indice-cre
 import { RegisterStudentComponent } from './register-student/register-student.component';
 
 export const routes: Routes = [
-        {path: '', component: LandingComponent},
-        {path: 'courses', component: IndiceCoursesComponent},
-        {path: 'students', component: IndiceStudentsComponent},
-        {path: 'credits', component: IndiceCreditProgramComponent},
-        {path: 'students/register', component: RegisterStudentComponent},
+  { path: '', component: LandingComponent },
+  { path: 'courses', component: IndiceCoursesComponent },
+  { path: 'students', component: IndiceStudentsComponent },
+  { path: 'credits', component: IndiceCreditProgramComponent },
+  { path: 'students/register', component: RegisterStudentComponent },
+  { path: 'landing', component: LandingComponent },
 ];

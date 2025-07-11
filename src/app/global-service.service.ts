@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class GlobalServiceService {
-  constructor() { }
+  constructor() {}
 
-   public globalProperty: string = 'Valor inicial';
-   public globalMenur: Boolean = false;
+  public globalProperty: string = 'Valor inicial';
+  public globalMenur: Boolean = false;
+  public idStudent: number = 0;
 }
