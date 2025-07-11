@@ -2,7 +2,14 @@
   .example-fill-remaining-space {
     flex: 1 1 auto;
   }
+  .space {
+    margin-top: 12px;
+  }
+  .contenedor {
+    margin: 0 100px;
+  }
 </style>
+
 <mat-toolbar>
   <span>
     <a routerLink="" mat-button> <mat-icon>menu</mat-icon> Inicio </a>
@@ -28,3 +35,9 @@
   </span>
   }
 </mat-toolbar>
+@if (isAuthenticated) {
+<div class="contenedor space">
+  <mat-card style="padding: 10px"><strong>Creditos: 58</strong></mat-card>
+</div>
+
+}
