@@ -60,20 +60,27 @@ export class RegisterStudentComponent {
 
   saveChanges() {
     let user = this.form.value as UserCreate;
+
+    // Se crea el usuario
     this.studentService.createUser(user).subscribe((response) => {
       var userToken = response as UserToken;
 
       let student = this.form.value as StudentCreate;
       student.UserId = userToken.id;
 
+      // Se crea el estudiante
       this.studentService.create(student).subscribe((response) => {
         this.userResponse = response;
+        var studentCreate = response as StudentCreate;
+
         var StudentCredit: StudentCredit = {
-          StudentId: userToken.id,
+          StudentId: studentCreate.id,
           Credits: 3,
         };
 
         this.globalServiceService.idStudent = StudentCredit.StudentId;
+
+        // Se crea creditos de estudiante
         this.studentService.insertCredit(StudentCredit).subscribe(() => {
           const userObject: UserObject = {
             id: student.UserId,

@@ -7,6 +7,7 @@ import { EnrollStudent } from '../course.model';
 import { UserObject } from '../student.models';
 import { environment } from '../../environments/environment';
 import { CreditProgramService } from '../credit-program.service';
+import { extractErrors } from '../extractErrors';
 
 @Component({
   selector: 'app-landing',
@@ -27,6 +28,8 @@ export class LandingComponent {
   coursesServices = inject(CoursesService);
   creditProgramService = inject(CreditProgramService);
   courses: any[] = [];
+  errores: string[] = [];
+
   constructor() {
     this.coursesServices.getCourses().subscribe((response) => {
       this.courses = response;
@@ -63,10 +66,18 @@ export class LandingComponent {
         courseId: id,
         studentId: userObject.studentId,
       };
-      this.coursesServices.requestCourse(enroll).subscribe(() => {
-        this.router.navigate(['courses']);
-        this.urlBase = environment.urlLocal + '/courses';
-        window.location.href = this.urlBase;
+
+      this.coursesServices.requestCourse(enroll).subscribe({
+        next: () => {
+          this.router.navigate(['courses']);
+          this.urlBase = environment.urlLocal + '/courses';
+          window.location.href = this.urlBase;
+        },
+        error: (err) => {
+          const errores = extractErrors(err);
+          this.errores = errores;
+          alert(errores[0]);
+        },
       });
     } else {
       this.router.navigate(['students/register/' + id]);
