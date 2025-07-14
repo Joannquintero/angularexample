@@ -1,4 +1,4 @@
 export const environment = {
   apiURL: 'http://sitepruebatecinterdomain.somee.com',
-  urlLocal: 'http://localhost:4200',
+  urlLocal: 'http://joannqyomailir.us-east-2.elasticbeanstalk.com',
 };
